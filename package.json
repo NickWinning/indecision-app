@@ -1,0 +1,12 @@
+{
+  "name": "incdecision-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Nick Nguyen",
+  "license": "MIT",
+  "private": null,
+  "dependencies": {
+    "babel-preset-env": "1.5.2",
+    "babel-preset-react": "6.24.1"
+  }
+}
