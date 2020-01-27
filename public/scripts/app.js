@@ -1,88 +1,72 @@
 'use strict';
 
-console.log('App.js is running');
+// My Code =(
+// const app = {
+//     title: 'Visibility Toggle',
+//     state: 0
+// };
 
-// JSX - JavaScript XML
-var app = {
-    title: 'Indecision App',
-    subtitle: 'Put your life in the hands of a computer',
-    options: []
-};
+// const showDetails = () => {
+//     app.state = 1;
+//     render();
+// };
 
-var onFormSubmit = function onFormSubmit(e) {
-    e.preventDefault();
+// const hideDetails = () => {
+//     app.state = 0;
+//     render();
+// }
 
-    var option = e.target.elements.option.value;
+// const render = () => { 
+//     const template = (
+//         <div>
+//             <h1>{app.title}</h1>
+//             {}
+//             <button hidden={app.state === 1} onClick={showDetails}>Show Details</button>
+//             <button hidden={app.state === 0}onClick={hideDetails}>Hide Details</button>
+//             <p hidden={app.state === 0}>Hey. These are some details you can now see!</p>
+//         </div>
+//     );
 
-    if (option) {
-        app.options.push(option);
-        e.target.elements.option.value = ' ';
-        renderAddOption();
-    }
-};
+//     ReactDOM.render(template, appRoot);
+// }
 
-var removeAll = function removeAll() {
-    app.options = [];
-    renderAddOption();
-};
+// const appRoot = document.getElementById('app');
+// render();
 
-var renderAddOption = function renderAddOption() {
-    var template = React.createElement(
+
+//Instructor code =)
+var visibility = false;
+
+var render = function render() {
+    var jsx = React.createElement(
         'div',
-        { onSubmit: onFormSubmit },
+        null,
         React.createElement(
             'h1',
             null,
-            app.title
-        ),
-        app.subtitle && React.createElement(
-            'p',
-            null,
-            app.subtitle
-        ),
-        React.createElement(
-            'p',
-            null,
-            app.options.length > 0 ? 'Here are your options' : 'No options'
-        ),
-        React.createElement(
-            'p',
-            null,
-            app.options.length
+            'Visibility Toggle'
         ),
         React.createElement(
             'button',
-            { onClick: removeAll },
-            'Remove All'
+            { onClick: toggleVisibility },
+            visibility ? 'Hide Details' : 'Show Details'
         ),
-        React.createElement(
-            'ol',
+        visibility && React.createElement(
+            'div',
             null,
             React.createElement(
-                'li',
+                'p',
                 null,
-                'Item One'
-            ),
-            React.createElement(
-                'li',
-                null,
-                'Item Two'
-            )
-        ),
-        React.createElement(
-            'form',
-            null,
-            React.createElement('input', { type: 'text', name: 'option' }),
-            React.createElement(
-                'button',
-                null,
-                'Add Option'
+                'Hey. These are some details you can now see!'
             )
         )
     );
-
-    ReactDOM.render(template, appRoot);
+    ReactDOM.render(jsx, document.getElementById('app'));
 };
 
-var appRoot = document.getElementById('app');
-renderAddOption();
+var toggleVisibility = function toggleVisibility() {
+    visibility = !visibility;
+    render();
+};
+
+render();
